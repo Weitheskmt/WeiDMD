@@ -83,4 +83,4 @@ DMD.fit(
 ## References
 
 To implement the various versions of the DMD algorithm we follow these works:
-* **Wei's DMD:** Wei Liu, Zi-Hao Chen, Yu Su, Yao Wang, and Wenjie Dou. *Predicting rate kernels via dynamic mode decomposition*. The Journal of Chemical Physics 159, no. 14 (2023). [[DOI](https://doi.org/10.1063/5.0170512)] [[bibitem](readme/refs/citations-20231031T120359.bibtex)]
+* **WeiDMD:** Wei Liu, Zi-Hao Chen, Yu Su, Yao Wang, and Wenjie Dou. *Predicting rate kernels via dynamic mode decomposition*. The Journal of Chemical Physics 159, no. 14 (2023). [[DOI](https://doi.org/10.1063/5.0170512)] [[bibitem](readme/refs/citations-20231031T120359.bibtex)]
