@@ -16,11 +16,8 @@
 * [Description](#description)
 * [Dependencies and installation](#dependencies-and-installation)
 * [Examples and Tutorials](#examples-and-tutorials)
-* [Using PyDMD](#using-pydmd)
-* [Awards](#awards)
+* [Using WeiDMD](#using-weidmd)
 * [References](#references)
-* [Developers and contributors](#developers-and-contributors)
-* [Funding](#funding)
 
 ## Description
 
