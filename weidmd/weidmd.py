@@ -66,8 +66,8 @@ class WeiDMD():
         hodmd_kernel = HODMD(svd_rank=0, exact=True, opt=True, d=d).fit(np.array(kernel_snap).reshape(1,-1))
         WeiDMD.plot_dmd_results(self,tf,hodmd_kernel,kernel_time_snap, kernel_snap, name)
 
-        endl = len(hodmd.reconstructed_data[0].real)
-        (x_reconstructed, y_reconstructed) = hodmd.dmd_timesteps[:(endl)], hodmd.reconstructed_data[0].real
+        endl = len(hodmd_kernel.reconstructed_data[0].real)
+        (x_reconstructed, y_reconstructed) = hodmd_kernel.dmd_timesteps[:(endl)], hodmd_kernel.reconstructed_data[0].real
 
         return x_reconstructed, y_reconstructed
 
