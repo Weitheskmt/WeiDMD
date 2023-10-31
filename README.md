@@ -26,11 +26,11 @@
 With WeiDMD, users can easily decompose complex, high-dimensional datasets into a set of coherent spatial and temporal modes, capturing the underlying dynamics and extracting important features. See the [**Examples**](#examples-and-tutorials) section below and the [**Tutorials**](tutorials) to have an idea of the potential of this package. Also see the diagram below for a summary of all available tools and functionalities. Currently in-progress contributions are represented by semi-transparent boxes.
 
 <p align="center">
-    <img src="readme/K_DD_AD_F_full.png" width="1000" />
+    <img src="readme/K_DD_AD_F_full.pdf" width="1000" />
 </p>
 
 <p align="center">
-    <img src="readme/PD_full.png" width="1000" />
+    <img src="readme/PD_full.pdf" width="1000" />
 </p>
 
 ## Dependencies and installation
