@@ -8,7 +8,7 @@
         <img alt="Software License" src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=for-the-badge">
     </a>
     <a href="https://pypi.org/project/weidmd/"  target="_blank">
-        <img alt="PyPI version" src="https://img.shields.io/pypi/v/pydmd?style=for-the-badge">
+        <img alt="PyPI version" src="https://img.shields.io/pypi/v/weidmd?style=for-the-badge">
     </a>
 </p>
 
