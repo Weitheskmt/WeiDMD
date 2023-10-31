@@ -6,9 +6,11 @@ import warnings
 warnings.filterwarnings("ignore")
 
 class WeiDMD():
-    def __init__(self,time,kernel,num_snapshots,nskip=1):
+    def __init__(self,time,kernel,num_snapshots='default',nskip=1):
         self.time = time
         self.kernel = kernel
+        if num_snapshots == 'default':
+            num_snapshots = self.kernel.shape[0]
         assert num_snapshots<=self.kernel.shape[0], "num_snapshots cannot be larger than {0}!".format(self.kernel.shape[0])
         self.num_snapshots = num_snapshots
         assert nskip<self.num_snapshots, "nskip must be smaller than {0}!".format(self.num_snapshots)
@@ -52,8 +54,9 @@ class WeiDMD():
         plt.rc('font',family='serif', size=12)
 
         if name is not None:
-            figname = "{0}/fit_plot.pdf".format(folder_name)
+            figname = "{0}/fit_plot_{1}.pdf".format(folder_name,name)
             plt.savefig(figname)
+        return hodmd.dmd_timesteps[:(endl)], hodmd.reconstructed_data[0].real
 
     def fit(self,tf,name=None,d='default'):
         if d=='default':
@@ -64,11 +67,6 @@ class WeiDMD():
         assert d < self.num_snapshots/self.nskip, 'd must be smaller than {0}!'.format(int(self.num_snapshots/self.nskip))
         kernel_time_snap, kernel_snap = WeiDMD.get_snapshots(self)
         hodmd_kernel = HODMD(svd_rank=0, exact=True, opt=True, d=d).fit(np.array(kernel_snap).reshape(1,-1))
-        WeiDMD.plot_dmd_results(self,tf,hodmd_kernel,kernel_time_snap, kernel_snap, name)
+        time_reconstructed, kernel_reconstructed = WeiDMD.plot_dmd_results(self,tf,hodmd_kernel,kernel_time_snap, kernel_snap, name)
 
-        endl = len(hodmd_kernel.reconstructed_data[0].real)
-        (x_reconstructed, y_reconstructed) = hodmd_kernel.dmd_timesteps[:(endl)], hodmd_kernel.reconstructed_data[0].real
-
-        return x_reconstructed, y_reconstructed
-
-
+        return time_reconstructed, kernel_reconstructed
