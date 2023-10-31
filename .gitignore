@@ -10,3 +10,6 @@ develop-eggs/
 *.egg-info/
 .installed.cfg
 *.egg
+
+# do not track data files generated from tutorial
+DMD_results
