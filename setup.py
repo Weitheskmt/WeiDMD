@@ -28,7 +28,7 @@ LDESCRIPTION = (
     "WeiDMD is a Python package that uses Dynamic Mode Decomposition for "
     "a data-driven model simplification based on spatiotemporal coherent "
     "structures.\n"
-    "whether the external field is involved or not, "
+    "Whether the external field is involved or not, "
     "the DMD can give accurate prediction of the result compared with the traditional propagations, "
     "and simultaneously reduce the required computational cost.\n"
 )
