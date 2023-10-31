@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="http://pydmd.github.io/PyDMD/" target="_blank" >
+  <a href="https://github.com/Weitheskmt/WeiDMD" target="_blank" >
     <img alt="Python Dynamic Mode Decomposition" src="readme/logo_weidmd.png" width="400" />
   </a>
 </p>
@@ -36,7 +36,7 @@ With WeiDMD, users can easily decompose complex, high-dimensional datasets into 
 ## Dependencies and installation
 
 ### Installing via PIP
-PyDMD is available on [PyPI](https://pypi.org/project/weidmd), therefore you can install the latest released version with:
+WeiDMD is available on [PyPI](https://pypi.org/project/weidmd), therefore you can install the latest released version with:
 ```bash
 > pip install weidmd
 ```
@@ -53,7 +53,7 @@ and then install the package in [development mode](https://setuptools.pypa.io/en
 ```
 
 ### Dependencies
-The core features of **PyDMD** depend on `numpy` and `scipy`. In order to use the plotting functionalities you will also need `matplotlib`.
+The core features of **WeiDMD** depend on `numpy` and `scipy`. In order to use the plotting functionalities you will also need `matplotlib`.
 
 ## Examples and Tutorials
 You can quickly know how to use the package in the [tutorials](tutorials/fast_use/test.ipynb).
