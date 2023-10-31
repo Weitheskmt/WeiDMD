@@ -7,13 +7,14 @@ warnings.filterwarnings("ignore")
 
 class WeiDMD():
     def __init__(self,time,kernel,num_snapshots='default',nskip=1):
+        assert len(time) == len(kernel), "*** len(time) != len(kernel) ***"
         self.time = time
         self.kernel = kernel
         if num_snapshots == 'default':
             num_snapshots = self.kernel.shape[0]
-        assert num_snapshots<=self.kernel.shape[0], "num_snapshots cannot be larger than {0}!".format(self.kernel.shape[0])
+        assert num_snapshots<=self.kernel.shape[0], "*** num_snapshots cannot be larger than {0}. ***".format(self.kernel.shape[0])
         self.num_snapshots = num_snapshots
-        assert nskip<self.num_snapshots, "nskip must be smaller than {0}!".format(self.num_snapshots)
+        assert nskip<self.num_snapshots, "*** nskip must be smaller than {0}. ***".format(self.num_snapshots)
         self.nskip = nskip
 
     def get_snapshots(self):
@@ -62,11 +63,30 @@ class WeiDMD():
         if d=='default':
             num_str = str(int(self.num_snapshots/self.nskip))
             num_digits = len(num_str)
-            d=int(self.num_snapshots/(10^(num_digits-1)*self.nskip))
-        assert isinstance(d, int), "d must be an integer!"
-        assert d < self.num_snapshots/self.nskip, 'd must be smaller than {0}!'.format(int(self.num_snapshots/self.nskip))
+            if num_digits ==3 and int(self.num_snapshots/self.nskip)>100:
+                d=min(int(self.num_snapshots/(10*self.nskip)), int(self.num_snapshots/self.nskip-1))
+            elif num_digits<3 or int(self.num_snapshots/self.nskip)==100:
+                d=min(int(self.num_snapshots/(2*self.nskip)), int(self.num_snapshots/self.nskip-1))
+            else:
+                d=int(self.num_snapshots/(10**(num_digits-2)*self.nskip))
+        assert isinstance(d, int), "*** d must be an integer. ***"
+        assert d < int(self.num_snapshots/self.nskip), '*** d must be smaller than {0}. ***'.format(int(self.num_snapshots/self.nskip))
+        print("*** d={0} ***".format(d))
         kernel_time_snap, kernel_snap = WeiDMD.get_snapshots(self)
         hodmd_kernel = HODMD(svd_rank=0, exact=True, opt=True, d=d).fit(np.array(kernel_snap).reshape(1,-1))
         time_reconstructed, kernel_reconstructed = WeiDMD.plot_dmd_results(self,tf,hodmd_kernel,kernel_time_snap, kernel_snap, name)
+        if np.max(kernel_reconstructed) >= 1000*np.max(self.kernel):
+            print("*** Too short snapshots or please reset your d to avoid divergence. ***")
+
+        ## MSE
+        common_length = min(len(self.kernel), len(kernel_reconstructed))
+        array1 = self.kernel[:common_length]
+        array2 = kernel_reconstructed[:common_length]
+        mse = np.mean((np.array(array1) - np.array(array2)) ** 2)
+        print("*** MSE={0} ***".format(mse))
+        if mse>10:
+            print("*** If you have an inf MSE, turn down d. ***")
+        else:
+            print("*** If you want a smaller MSE, turn up d. ***")
 
         return time_reconstructed, kernel_reconstructed
